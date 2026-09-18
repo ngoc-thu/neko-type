@@ -30,7 +30,7 @@ start_widget() {
     fi
 
     echo "🚀 Starting NekoType desktop widget..."
-    DISPLAY="${DISPLAY:-:1}" nohup "$EXE" </dev/null >/dev/null 2>&1 &
+    DISPLAY="${DISPLAY:-:1}" setsid "$EXE" </dev/null >/dev/null 2>&1 &
     sleep 0.8
 
     if is_running; then
@@ -82,7 +82,7 @@ settings_widget() {
         sleep 0.3
     fi
     echo "⚙️ Launching NekoType with Settings Panel..."
-    DISPLAY="${DISPLAY:-:1}" nohup "$EXE" --settings </dev/null >/dev/null 2>&1 &
+    DISPLAY="${DISPLAY:-:1}" setsid "$EXE" --settings </dev/null >/dev/null 2>&1 &
     sleep 0.8
     echo "✨ NekoType Settings Panel opened!"
 }
