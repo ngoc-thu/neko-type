@@ -14,7 +14,7 @@
 
 <br/>
 
-<img src="assets/widget-preview.png" alt="NekoType Desktop Widget Preview" width="500" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
+<img src="assets/widget-preview.png" alt="NekoType Desktop Widget Preview" width="800" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
 
 <br/>
 <em>NekoType sitting comfortably on top of the Ubuntu dock, reacting to global keystrokes in real-time.</em>
@@ -127,6 +127,13 @@ Settings include:
   - 🌌 **Cyber Midnight**: Dark purple, neon cyan, and synthwave tones.
   - 🍑 **Calico Peach**: Warm peach, cream, and soft terracotta.
   - ☕ **Caramel Latte**: Cozy warm mocha, caramel, and beige.
+
+  <br/>
+
+  <p align="center">
+    <img src="assets/themes-preview.png" alt="NekoType 4 Themes Preview" width="800" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+  </p>
+
 - 📐 **Scale**: 75%, 100%, 125%, 150%.
 - 📍 **Dock Alignment**: Bottom-Right, Bottom-Center, Bottom-Left.
 - ⚡ **Toggles**: Always on Top, Particle Effects, Typing Animations, Launch at Startup.
