@@ -2,6 +2,7 @@ node_modules/
 dist/
 dist-deb/
 *.deb
+*.tar.gz
 src-tauri/target/
 .DS_Store
 *.log

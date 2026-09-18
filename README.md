@@ -1,126 +1,196 @@
-# 🐾 NekoType - Original Anime Typing Desktop Companion for Ubuntu GNOME
+<div align="center">
 
-A lightweight, production-grade native desktop companion widget inspired by the "Bongo Cat" concept, featuring an **original chibi anime cat character** ("Neko") sitting behind a miniature mechanical keyboard beside the bottom Ubuntu dock.
+<img src="assets/logo.png" alt="NekoType Logo" width="160" />
 
-Designed specifically to match modern pink/purple/cyan anime desktop aesthetics on Ubuntu GNOME (X11 & Wayland).
+# 🐾 NekoType
 
----
+### *Lightweight Native Anime Typing Companion for Ubuntu GNOME*
 
-## ✨ Features
+[![GitHub Release](https://img.shields.io/github/v/release/ngoc-thu/neko-type?color=ff69b4&logo=github)](https://github.com/ngoc-thu/neko-type/releases)
+[![Ubuntu 22.04 & 24.04 LTS](https://img.shields.io/badge/Ubuntu-22.04%20%7C%2024.04%20LTS-E95420?logo=ubuntu&logoColor=white)](https://ubuntu.com)
+[![Rust Tauri v2](https://img.shields.io/badge/Tauri-v2%20%7C%20Rust-24c8db?logo=tauri&logoColor=white)](https://tauri.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg)]()
 
-- **100% Transparent Desktop Integration**:
-  - Frameless, zero window borders, zero titlebar, 100% transparent background.
-  - Automatically aligns beside the Ubuntu dock at the bottom-right (or bottom-center / bottom-left).
-  - Configured with `skip_taskbar: true` (no dock/alt-tab clutter) and `always_on_top: true`.
-  - Non-intrusive: clicking the widget does not steal keyboard focus from your active code editor or terminal.
-- **Original Anime Chibi Character**:
-  - High-precision vector SVG rig with crisp rendering at any display scaling (75%, 100%, 125%, 150%).
-  - 7 animated states:
-    1. `IDLE`: Gentle breathing cycle, natural blinking, ear twitches, mouse cursor tracking.
-    2. `TYPING_LEFT`: Left paw tap down, depressed keycap, cute focused gaze.
-    3. `TYPING_RIGHT`: Right paw tap down, depressed keycap.
-    4. `FAST_TYPING`: Rhythmic paw flurry, determined anime sparkle eyes, tiny pastel star sparkles.
-    5. `SLEEPING`: Head resting down, closed serene eyes, drifting "Zzz" bubble particles after 20s inactivity.
-    6. `HAPPY`: Smiling arch eyes (`^ω^`), cute cheek blush, floating mini heart on click/pet.
-    7. `SURPRISED`: Dilated starry pupils, perked ears, cute "!" reaction mark on sudden typing after sleep.
-- **Global Keyboard Detection**:
-  - Event-driven X11 XRecord background listener (`rdev`).
-  - Zero root/sudo permissions needed on standard Ubuntu X11 sessions.
-  - Keystrokes per second (KPS) calculation with key-repeat throttling.
-- **Interactive Glassmorphic Menu**:
-  - Click the cat to open an acrylic blurred floating settings menu.
-  - Switch palettes: **Sakura Dream**, **Cyber Midnight**, **Calico Peach**, **Caramel Latte**.
-  - Change scale (75% / 100% / 125% / 150%).
-  - Change dock position (Left / Center / Right).
-  - Toggle typing animation, visual effects, always-on-top, and autostart on Ubuntu boot.
-- **Ultra-low Resource Consumption**:
-  - Rust backend + WebKitGTK with hardware-accelerated CSS transforms.
-  - Idle CPU usage < 0.3%, memory footprint < 40MB.
+<br/>
+
+<img src="assets/widget-preview.png" alt="NekoType Desktop Widget Preview" width="500" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
+
+<br/>
+<em>NekoType sitting comfortably on top of the Ubuntu dock, reacting to global keystrokes in real-time.</em>
+
+</div>
 
 ---
 
-## 🚀 Quick Start
+## 🌟 Overview
 
-### 1. Run the Widget
+**NekoType** is an original, lightweight native desktop companion widget inspired by the "Bongo Cat" concept. It features a cute anime chibi cat ("Neko") sitting behind a miniature mechanical keyboard beside your Ubuntu dock.
+
+Designed to feel like an organic part of the Ubuntu desktop and dock rather than an application window:
+- **100% Transparent & Frameless**: No title bar, no window border, no background box.
+- **Dock-Aligned**: Anchors right above or beside the Ubuntu dock.
+- **Dedicated Settings Panel**: Clean anime-styled glassmorphic window to adjust themes, scale, and positioning.
+- **Zero Distraction**: No clutter in your GNOME top bar or Alt-Tab switcher (`skip_taskbar: true`).
+- **Pass-through Focus**: Interacting with the widget never steals keyboard focus from your terminal or IDE.
+- **Ultra-Low Resource Usage**: Native Rust + WebKitGTK with hardware-accelerated CSS transforms (<0.3% idle CPU, <40MB RAM).
+
+---
+
+## 📦 Installation & Download
+
+### Option 1: Install with `.deb` Package (Recommended)
+
+Download the latest `.deb` installer from the **[GitHub Releases](https://github.com/ngoc-thu/neko-type/releases)** page:
+
 ```bash
-./run.sh
+# 1. Download the release deb package
+wget https://github.com/ngoc-thu/neko-type/releases/download/v1.0.0/neko-type_1.0.0_amd64.deb
+
+# 2. Install using apt (automatically handles dependencies)
+sudo apt install ./neko-type_1.0.0_amd64.deb
 ```
 
-### 2. Development Mode
+Once installed, **NekoType** and **NekoType Settings** will be available directly in your Ubuntu Application launcher (Super key).
+
+To uninstall:
 ```bash
-pnpm run dev
-# In another terminal:
-export PATH="$HOME/.cargo/bin:$PATH"
-pnpm run tauri dev
+sudo apt remove neko-type
 ```
 
-### 3. Build Production Binary
+---
+
+### Option 2: Portable Tarball
+
+If you prefer running without installing system packages:
+
 ```bash
+# 1. Download and extract
+wget https://github.com/ngoc-thu/neko-type/releases/download/v1.0.0/neko-type_1.0.0_linux_x86_64.tar.gz
+tar -xzf neko-type_1.0.0_linux_x86_64.tar.gz
+cd neko-type-1.0.0
+
+# 2. Run
+./run.sh start
+```
+
+---
+
+### Option 3: Build from Source
+
+#### Prerequisites
+- Ubuntu 22.04 or 24.04 LTS
+- Node.js $\ge$ 18 & pnpm (`npm install -g pnpm`)
+- Rust toolchain (`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`)
+- System libraries:
+  ```bash
+  sudo apt update
+  sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget file \
+      libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev \
+      libxtst-dev libxi-dev libx11-dev
+  ```
+
+#### Building
+```bash
+git clone https://github.com/ngoc-thu/neko-type.git
+cd neko-type
+
+# Install frontend dependencies
+pnpm install
+
+# Build the standalone production binary
 pnpm tauri build --no-bundle
+
+# Or build the .deb package
+./package_deb.sh
 ```
-The optimized standalone binary (with embedded frontend) will be created at:
-`src-tauri/target/release/bongo-cat`
 
 ---
 
-## 🛠️ System Architecture
+## 🎮 How to Use
+
+### 🐾 Interaction
+- **Type anywhere**: Watch Neko alternate paws on the mini mechanical keyboard! Keystrokes per second (KPS) increase tapping speed, trigger star sparkles, and activate enthusiastic anime expressions.
+- **Click the cat**: Neko purrs with happy arched eyes (`^ω^`), blushing cheeks, and floating hearts.
+- **Right-click the cat**: Immediately opens the **NekoType Settings Panel**.
+- **Inactivity (20s+)**: Neko curls up and falls asleep with floating `Zzz` bubbles. Typing instantly wakes Neko up with a cute reaction!
+
+### ⚙️ Dedicated Settings Panel
+Open settings via:
+- Right-clicking the cat.
+- Launching **NekoType Settings** from GNOME Application Menu (`Super` key).
+- Terminal command: `./run.sh settings`.
+
+Settings include:
+- 🎨 **Theme Palettes**:
+  - 🌸 **Sakura Dream**: Pastel pink, lavender, and white accents.
+  - 🌌 **Cyber Midnight**: Dark purple, neon cyan, and synthwave tones.
+  - 🍑 **Calico Peach**: Warm peach, cream, and soft terracotta.
+  - ☕ **Caramel Latte**: Cozy warm mocha, caramel, and beige.
+- 📐 **Scale**: 75%, 100%, 125%, 150%.
+- 📍 **Dock Alignment**: Bottom-Right, Bottom-Center, Bottom-Left.
+- ⚡ **Toggles**: Always on Top, Particle Effects, Typing Animations, Launch at Startup.
+
+### 🕹️ CLI Control Script (`run.sh`)
+```bash
+./run.sh start      # Start desktop widget in background
+./run.sh settings   # Open Settings Panel
+./run.sh toggle     # Toggle widget visibility
+./run.sh stop       # Gracefully stop widget
+./run.sh restart    # Restart widget
+./run.sh status     # Check process status (running / stopped)
+./run.sh package    # Rebuild standard Ubuntu .deb installer
+```
+
+---
+
+## 🏗️ Architecture
 
 ```
-bongo-cat/
-├── run.sh                     # Convenient single-click launcher
-├── package.json               # Frontend dependencies (Tauri API, Vite, TypeScript)
-├── vite.config.ts             # Vite bundler configuration
-├── index.html                 # App shell & mounting nodes
-├── src/
-│   ├── main.ts                # App initialization & Tauri IPC event bridges
+neko-type/
+├── assets/                    # Screenshots, logos, and previews
+├── index.html                 # Main desktop widget HTML shell
+├── settings.html              # Dedicated Settings window HTML shell
+├── package_deb.sh             # Native Debian package builder
+├── run.sh                     # Daemon lifecycle manager (setsid / PID tracking)
+├── src/                       # Frontend TypeScript & SVG Rig
+│   ├── main.ts                # Widget entry point & Tauri IPC event bridges
+│   ├── settings.ts            # Settings window logic & persistence
 │   ├── character/
-│   │   ├── assets.ts          # Original vector SVG definitions (cat rig & keyboard)
-│   │   ├── rig.ts             # Layered SVG rig controller (paws, eyes, mouth, keys)
-│   │   └── themes.ts          # 4 colorway theme palettes & CSS variables
+│   │   ├── assets.ts          # Original vector SVG character & keyboard rig
+│   │   ├── rig.ts             # Layered bone/part controller (paws, eyes, mouth)
+│   │   └── themes.ts          # Color palette definitions & CSS variables
 │   ├── animation/
-│   │   └── state_machine.ts   # State controller, transitions, inactivity timers
-│   ├── effects/
-│   │   └── particles.ts       # Canvas particle engine (Zzz, sparkles, hearts, '!')
-│   ├── menu/
-│   │   └── context_menu.ts    # Glassmorphic floating context menu
-│   └── styles/
-│       ├── main.css           # Base styles & layout
-│       ├── character.css      # Hardware-accelerated CSS animations
-│       └── menu.css           # Glassmorphic acrylic blur & controls
-└── src-tauri/
+│   │   └── state_machine.ts   # State controller (Idle, Typing, Sleep, Happy)
+│   └── effects/
+│       └── particles.ts       # Canvas particle engine (Sparkles, Hearts, Zzz)
+└── src-tauri/                 # Backend Rust (Tauri 2)
     ├── Cargo.toml             # Rust dependencies (tauri, rdev, x11, serde)
-    ├── tauri.conf.json        # Transparent frameless window & capabilities
-    ├── icons/                 # Original anime desktop icons
+    ├── tauri.conf.json        # Multi-window config (Widget + Settings)
     └── src/
-        ├── lib.rs             # Tauri application builder & IPC command handlers
-        ├── main.rs            # Binary entry point
-        ├── keyboard.rs        # Dedicated X11 global keyboard hook thread
-        ├── dock_detector.rs   # GNOME workarea & dock position engine
-        ├── config.rs          # Settings persistence (~/.config/bongo-cat/settings.json)
-        ├── autostart.rs       # XDG autostart manager (~/.config/autostart/)
-        └── window.rs          # Window dimensions, positioning & GTK properties
+        ├── lib.rs             # Tauri app builder, IPC commands, multi-window
+        ├── main.rs            # Binary entry point & CLI flag handler (--settings)
+        ├── keyboard.rs        # X11 XRecord global key listener (zero root required)
+        ├── dock_detector.rs   # GNOME workarea & dock geometry detector
+        ├── config.rs          # JSON config persistence (~/.config/neko-type/)
+        └── autostart.rs       # XDG Autostart generator (~/.config/autostart/)
 ```
 
 ---
 
-## 🔍 How It Works
+## 🔒 Privacy & Permissions
 
-### Global Keyboard Detection
-- Under **X11** (`XDG_SESSION_TYPE=x11`), the app runs a background listener thread using the `rdev` crate connected to the X11 `XRecord` extension (`libxtst`).
-- This allows passive capture of raw keypresses across all system windows without grabbing keyboard input or blocking typing.
-- No `sudo` or `root` permissions are required.
-- Under **Wayland**, Linux isolates input by default; global input requires reading `/dev/input/event*` which requires adding your user to the `input` group: `sudo usermod -aG input $USER`.
-
-### Ubuntu GNOME Dock Alignment
-- The widget inspects the `_NET_WORKAREA` X11 property to determine the exact screen boundaries excluding the top panel and the bottom dock.
-- On standard Ubuntu 24.04 with Dash-to-Dock, the widget automatically anchors itself right above the dock in the bottom-right corner with a comfortable 20px padding.
+- **Zero Root Required**: Runs entirely in user space under standard Ubuntu desktop sessions.
+- **Passive Keystroke Counter**: NekoType listens to keypress down/up events purely for animation timing and typing rhythm (KPS). It **never** logs, records, inspects, or transmits keystrokes or text.
 
 ---
 
-## ⚙️ Configuration
+## 📄 License
 
-Settings are saved locally in:
-`~/.config/bongo-cat/settings.json`
+Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
 
-Autostart desktop entry is managed in:
-`~/.config/autostart/bongo-cat-widget.desktop`
+---
+
+<div align="center">
+Crafted with ❤️ for anime & desktop customization enthusiasts.
+</div>
