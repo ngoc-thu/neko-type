@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NekoType - Bảng cài đặt</title>
+    <link rel="stylesheet" href="/src/styles/settings.css" />
+  </head>
+  <body>
+    <div class="settings-app">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-logo">
+          <div class="cat-avatar">🐾</div>
+          <div>
+            <h1>NekoType</h1>
+            <p>Bảng điều khiển Desktop Companion</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Scroll -->
+      <main class="settings-body">
+        <!-- Section: Widget Power Toggle -->
+        <div class="card power-card">
+          <div class="power-info">
+            <div class="power-title">Hiển thị bé mèo trên Desktop</div>
+            <div class="power-desc">Bật/tắt nhanh sự xuất hiện của bé mèo cạnh dock</div>
+          </div>
+          <label class="switch large-switch">
+            <input type="checkbox" id="toggle-widget-power" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <!-- Section: Theme Palettes -->
+        <div class="section-group">
+          <h2 class="section-title">Chủ đề & Màu sắc</h2>
+          <div class="theme-list">
+            <div class="theme-card active" data-theme="sakura">
+              <div class="theme-preview theme-sakura"></div>
+              <div class="theme-details">
+                <div class="theme-name">🌸 Sakura Dream (Mặc định)</div>
+                <div class="theme-sub">Mèo trắng tuyết, tai hồng, RGB mint cyan</div>
+              </div>
+              <div class="check-mark">✓</div>
+            </div>
+
+            <div class="theme-card" data-theme="cyber">
+              <div class="theme-preview theme-cyber"></div>
+              <div class="theme-details">
+                <div class="theme-name">⚡ Cyber Midnight</div>
+                <div class="theme-sub">Mèo đen bóng đêm, mắt neon cyan & magenta</div>
+              </div>
+              <div class="check-mark">✓</div>
+            </div>
+
+            <div class="theme-card" data-theme="calico">
+              <div class="theme-preview theme-calico"></div>
+              <div class="theme-details">
+                <div class="theme-name">🍂 Calico Peach</div>
+                <div class="theme-sub">Mèo tam thể ấm áp, phím màu đào & chuông vàng</div>
+              </div>
+              <div class="check-mark">✓</div>
+            </div>
+
+            <div class="theme-card" data-theme="caramel">
+              <div class="theme-preview theme-caramel"></div>
+              <div class="theme-details">
+                <div class="theme-name">☕ Caramel Latte</div>
+                <div class="theme-sub">Mèo xiêm nâu sữa ấm cúng, phím mocha dịu dàng</div>
+              </div>
+              <div class="check-mark">✓</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Scale -->
+        <div class="section-group">
+          <h2 class="section-title">Kích thước hiển thị</h2>
+          <div class="segmented-control" id="scale-control">
+            <button class="segment-btn" data-scale="0.75">Nhỏ (75%)</button>
+            <button class="segment-btn active" data-scale="1.0">Chuẩn (100%)</button>
+            <button class="segment-btn" data-scale="1.25">Lớn (125%)</button>
+            <button class="segment-btn" data-scale="1.5">Cực đại (150%)</button>
+          </div>
+        </div>
+
+        <!-- Section: Position -->
+        <div class="section-group">
+          <h2 class="section-title">Vị trí cạnh Dock Ubuntu</h2>
+          <div class="segmented-control" id="position-control">
+            <button class="segment-btn" data-pos="bottom-left">👈 Góc Trái</button>
+            <button class="segment-btn" data-pos="bottom-center">👇 Ở Giữa</button>
+            <button class="segment-btn active" data-pos="bottom-right">👉 Góc Phải</button>
+          </div>
+        </div>
+
+        <!-- Section: Features -->
+        <div class="section-group">
+          <h2 class="section-title">Tính năng tương tác</h2>
+          <div class="card toggle-card">
+            <div class="toggle-row">
+              <div class="toggle-label">
+                <div class="label-name">⌨️ Phản hồi gõ phím toàn cục</div>
+                <div class="label-sub">Hai tay mèo đập luân phiên theo phím bạn gõ</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-typing" checked />
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-label">
+                <div class="label-name">✨ Hiệu ứng ngôi sao & Bong bóng ngủ</div>
+                <div class="label-sub">Ngôi sao bay khi gõ nhanh, chữ Zzz khi ngủ</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-effects" checked />
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-label">
+                <div class="label-name">📌 Luôn nổi trên cùng (Always on Top)</div>
+                <div class="label-sub">Giữ bé mèo luôn hiển thị phía trên các cửa sổ</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-top" checked />
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-label">
+                <div class="label-name">🚀 Khởi động cùng Ubuntu</div>
+                <div class="label-sub">Tự động bật bé mèo khi khởi động máy tính</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-autostart" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer Buttons -->
+      <footer class="app-footer">
+        <button class="btn btn-danger" id="btn-quit">🚪 Tắt ứng dụng</button>
+        <button class="btn btn-primary" id="btn-close-settings">Đóng bảng cài đặt</button>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/settings.ts"></script>
+  </body>
+</html>

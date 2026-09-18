@@ -1,0 +1,152 @@
+/* Character Rig Styling & Hardware-Accelerated Animations */
+
+.cat-rig {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Base layer transitions */
+.rig-head, .rig-body, .rig-paw-left, .rig-paw-right, .rig-bell {
+  will-change: transform;
+}
+
+/* Breathing animation for IDLE */
+.state-idle .rig-body {
+  animation: idle-breathe 2.4s ease-in-out infinite alternate;
+}
+
+.state-idle .rig-head {
+  animation: head-bob 2.4s ease-in-out infinite alternate;
+}
+
+.state-idle .rig-bell {
+  animation: bell-sway 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes idle-breathe {
+  0% { transform: translateY(0px) scaleY(1); }
+  100% { transform: translateY(-2px) scaleY(1.02); }
+}
+
+@keyframes head-bob {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-3px) rotate(0.5deg); }
+}
+
+@keyframes bell-sway {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
+}
+
+/* Paw Tapping Mechanics */
+.rig-paw-left, .rig-paw-right {
+  transition: transform 0.05s ease-out;
+  transform-origin: 50% 20%;
+}
+
+/* Left Paw States */
+.paw-left-up {
+  transform: translate3d(0, -14px, 0) rotate(-8deg);
+}
+
+.paw-left-down {
+  transform: translate3d(0, 4px, 0) rotate(2deg);
+}
+
+/* Right Paw States */
+.paw-right-up {
+  transform: translate3d(0, -14px, 0) rotate(8deg);
+}
+
+.paw-right-down {
+  transform: translate3d(0, 4px, 0) rotate(-2deg);
+}
+
+/* Fast Typing Fury */
+.state-fast-typing .rig-head {
+  animation: head-intense 0.12s infinite alternate;
+}
+
+.state-fast-typing .rig-keyboard {
+  filter: drop-shadow(0 0 10px var(--rgb-glow));
+}
+
+@keyframes head-intense {
+  0% { transform: translateY(-2px) rotate(-1deg); }
+  100% { transform: translateY(1px) rotate(1deg); }
+}
+
+/* Sleeping State */
+.state-sleeping .rig-head {
+  transform: translate3d(0, 8px, 0) rotate(2deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.state-sleeping .rig-body {
+  animation: sleep-breathe 3.6s ease-in-out infinite alternate;
+}
+
+@keyframes sleep-breathe {
+  0% { transform: translateY(0px) scaleY(0.98); }
+  100% { transform: translateY(-1px) scaleY(1.01); }
+}
+
+/* Happy State */
+.state-happy .rig-head {
+  animation: happy-bounce 0.4s ease-in-out 2 alternate;
+}
+
+@keyframes happy-bounce {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-8px) scale(1.05); }
+}
+
+/* Surprised State */
+.state-surprised .rig-head {
+  transform: translate3d(0, -8px, 0) scale(1.04);
+  transition: transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+/* Keyboard Underglow Breathing */
+.keyboard-underglow {
+  animation: rgb-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes rgb-pulse {
+  0% {
+    opacity: 0.6;
+    filter: drop-shadow(0 2px 6px var(--rgb-glow));
+  }
+  100% {
+    opacity: 0.95;
+    filter: drop-shadow(0 3px 12px var(--rgb-secondary));
+  }
+}
+
+/* Active Key Depression */
+.key-depressed {
+  transform: translateY(2px);
+  fill: var(--keycap-active) !important;
+  filter: drop-shadow(0 0 5px var(--keycap-active));
+  transition: transform 0.04s, fill 0.04s;
+}
+
+/* Ears Twitch */
+.ear-twitch-left {
+  animation: twitch-left 0.3s ease-in-out;
+}
+
+.ear-twitch-right {
+  animation: twitch-right 0.3s ease-in-out;
+}
+
+@keyframes twitch-left {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-6deg); }
+}
+
+@keyframes twitch-right {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(6deg); }
+}

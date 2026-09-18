@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-deb/
+*.deb
+src-tauri/target/
+.DS_Store
+*.log
